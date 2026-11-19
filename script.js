@@ -22,7 +22,7 @@
     var ctx = canvas.getContext("2d");
     var w = 0, h = 0, dpr = 1;
     var shapes = ["circle", "triangle", "square"];
-    var colors = ["#33fee0", "#22e6e6", "#61ce96", "#4aa8e0"];
+    var colors = ["#0d9c92", "#2b82b8", "#2e9a6b", "#6a8fa3"];
     var particles = [];
     var mouse = { x: -1000, y: -1000, active: false };
 
@@ -50,7 +50,7 @@
       p.size = 6 + Math.random() * 15;
       p.shape = shapes[(Math.random() * shapes.length) | 0];
       p.color = colors[(Math.random() * colors.length) | 0];
-      p.alpha = 0.12 + Math.random() * 0.3;
+      p.alpha = 0.08 + Math.random() * 0.16;
       p.speed = 0.14 + Math.random() * 0.42;
       p.sway = 0.25 + Math.random() * 0.8;
       p.phase = Math.random() * Math.PI * 2;
