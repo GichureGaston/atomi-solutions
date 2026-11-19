@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atomi Solutions — The till that keeps selling</title>
+  <meta name="description" content="Atomi is an offline-first point of sale for small businesses. Sell with cash, M-Pesa and card, file eTIMS receipts, and run every branch from one phone.">
+  <meta name="theme-color" content="#07131f">
+  <meta property="og:title" content="Atomi Solutions — The till that keeps selling">
+  <meta property="og:description" content="An offline-first POS built for the way SMEs in Kenya actually trade.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Ambient gravity field: floating teal shapes that drift away from the cursor. -->
+  <canvas id="particle-field" aria-hidden="true"></canvas>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a class="brand" href="#top">
+        <img src="assets/logo.svg" alt="" class="brand-mark" width="36" height="36">
+        <span>atomi <b>solutions</b></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#walkthrough">App walkthrough</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="btn btn-sm btn-primary nav-cta" href="mailto:atomisolutionssupport@gmail.com?subject=Atomi%20enquiry">Enquire</a>
+
+      <details class="mobile-menu">
+        <summary aria-label="Open navigation">Menu</summary>
+        <div class="mobile-menu-panel">
+          <a href="#overview">Overview</a>
+          <a href="#walkthrough">App walkthrough</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </details>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Offline-first POS · built in Kenya</p>
+          <h1>Sell anywhere.<br><span class="gradient">Even offline.</span></h1>
+          <p class="lede">
+            Atomi turns the phone you already own into a complete till. Take cash,
+            M-Pesa and card payments, file KRA eTIMS receipts, and keep trading when
+            the internet drops — all from one place.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#walkthrough">
+              See the app
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="mailto:atomisolutionssupport@gmail.com?subject=Atomi%20pilot%20enquiry">Talk to us</a>
+          </div>
+          <ul class="hero-points" aria-label="Highlights">
+            <li>Works without internet</li>
+            <li>Real M-Pesa STK push</li>
+            <li>eTIMS built in</li>
+          </ul>
+        </div>
+
+        <div class="hero-device" data-reveal>
+          <div class="device-glow" aria-hidden="true"></div>
+          <div class="phone" role="img" aria-label="Atomi till showing a sale with cash and M-Pesa payments">
+            <div class="phone-bar"><span>9:41</span><span class="phone-bar-icons" aria-hidden="true">▮▮▮ ●</span></div>
+            <div class="phone-app">
+              <div class="app-top">
+                <span class="app-title">Sell</span>
+                <span class="app-chip">Open shift</span>
+              </div>
+              <div class="app-cart">
+                <div class="cart-row"><span>Uji flour 1kg<small>x2</small></span><b>KES 240</b></div>
+                <div class="cart-row"><span>Cooking oil<small>x1</small></span><b>KES 210</b></div>
+                <div class="cart-row"><span>Sugar 1kg<small>x1</small></span><b>KES 110</b></div>
+              </div>
+              <div class="app-total"><span>Total</span><strong>KES 560.00</strong></div>
+              <div class="app-tenders">
+                <span class="tender">Cash 200</span><span class="tender tender-active">M-Pesa 360</span>
+              </div>
+              <div class="app-charge">Charge</div>
+              <div class="app-tabs" aria-hidden="true"><span>Sell</span><span>Orders</span><span>Stock</span><span>Reports</span></div>
+            </div>
+          </div>
+          <div class="float-card float-card-a" aria-hidden="true">
+            <span class="pulse"></span> STK confirmed
+          </div>
+          <div class="float-card float-card-b" aria-hidden="true">
+            eTIMS clearance <b>✓</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap stat-strip" data-reveal aria-label="Product at a glance">
+        <div><strong>7</strong><span>trades, one till</span></div>
+        <div><strong>0</strong><span>downtime offline</span></div>
+        <div><strong>2</strong><span>phones = till + scanner</span></div>
+        <div><strong>1</strong><span>view of every branch</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="wrap narrow" data-reveal>
+        <p class="eyebrow">Why Atomi</p>
+        <h2>A POS built for how you actually trade</h2>
+        <p class="section-lede">
+          Most point-of-sale systems assume a fast connection, a card terminal and
+          one kind of shop. Atomi starts from the reality of a Kenyan SME: M-Pesa is
+          the default, the network is unreliable, and KRA eTIMS is part of every sale.
+        </p>
+      </div>
+      <div class="wrap feature-row">
+        <article class="feature-card" data-reveal>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2M17 3l4 4-4 4"/></svg>
+          </span>
+          <h3>Keeps selling offline</h3>
+          <p>Sales are saved locally first, then synced in the background. Idempotent retries mean a sale is never applied twice.</p>
+        </article>
+        <article class="feature-card" data-reveal>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          </span>
+          <h3>M-Pesa, properly</h3>
+          <p>A real STK push — the sale finalises only when Safaricom confirms the exact amount. Missed callbacks are reconciled automatically.</p>
+        </article>
+        <article class="feature-card" data-reveal>
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><circle cx="17" cy="16" r="2"/></svg>
+          </span>
+          <h3>eTIMS on every sale</h3>
+          <p>Invoices and credit notes clear with KRA. The receipt carries the clearance number and QR code — no bolt-on device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section walkthrough" id="walkthrough">
+      <div class="wrap narrow" data-reveal>
+        <p class="eyebrow">App walkthrough</p>
+        <h2>One day, five moments</h2>
+        <p class="section-lede">Follow a sale from setting up the business to closing the till. Tap a step to see that screen.</p>
+      </div>
+
+      <div class="wrap walk-grid">
+        <ol class="steps" role="tablist" aria-label="App walkthrough steps" data-reveal>
+          <li role="presentation">
+            <button class="step is-active" role="tab" id="tab-0" aria-controls="screen-0" aria-selected="true" data-step="0">
+              <span class="step-num">01</span>
+              <span><b>Set up the business</b><small>One account, any number of branches</small></span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button class="step" role="tab" id="tab-1" aria-controls="screen-1" aria-selected="false" tabindex="-1" data-step="1">
+              <span class="step-num">02</span>
+              <span><b>Load stock</b><small>Products, prices, barcodes and batches</small></span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button class="step" role="tab" id="tab-2" aria-controls="screen-2" aria-selected="false" tabindex="-1" data-step="2">
+              <span class="step-num">03</span>
+              <span><b>Ring up a sale</b><small>Tap or scan, then split the tender</small></span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button class="step" role="tab" id="tab-3" aria-controls="screen-3" aria-selected="false" tabindex="-1" data-step="3">
+              <span class="step-num">04</span>
+              <span><b>Confirm on the phone</b><small>M-Pesa STK, then a printable receipt</small></span>
+            </button>
+          </li>
+          <li role="presentation">
+            <button class="step" role="tab" id="tab-4" aria-controls="screen-4" aria-selected="false" tabindex="-1" data-step="4">
+              <span class="step-num">05</span>
+              <span><b>Close the day</b><small>X/Z shifts and reports across branches</small></span>
+            </button>
+          </li>
+        </ol>
+
+        <div class="device-stage" data-reveal>
+          <div class="phone phone-stage">
+            <div class="phone-bar"><span>9:41</span><span class="phone-bar-icons" aria-hidden="true">▮▮▮ ●</span></div>
+            <div class="phone-app" id="demo-screens">
+
+              <article class="screen is-active" id="screen-0" role="tabpanel" aria-labelledby="tab-0">
+                <div class="app-top"><span class="app-title">Welcome</span><span class="app-chip">Step 1 of 5</span></div>
+                <div class="app-hero-mini"><span class="app-orb" aria-hidden="true"></span><b>Create your business</b><small>Registered once. Every till follows.</small></div>
+                <label class="field"><span>Business name</span><i>Mama Njeri's Shop</i></label>
+                <label class="field"><span>Country</span><i>Kenya</i></label>
+                <label class="field"><span>Business type</span><i>Retail</i></label>
+                <div class="app-charge">Create business</div>
+              </article>
+
+              <article class="screen" id="screen-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+                <div class="app-top"><span class="app-title">Stock</span><span class="app-chip">3 products</span></div>
+                <div class="app-search">Search products</div>
+                <div class="stock-row"><span class="stock-dot dot-teal"></span><span>Uji flour 1kg<small>SKU FLR-001</small></span><b>KES 120</b></div>
+                <div class="stock-row"><span class="stock-dot dot-blue"></span><span>Cooking oil<small>SKU OIL-002</small></span><b>KES 210</b></div>
+                <div class="stock-row"><span class="stock-dot dot-mint"></span><span>Sugar 1kg<small>SKU SGR-003</small></span><b>KES 110</b></div>
+                <div class="app-charge">+ New product</div>
+              </article>
+
+              <article class="screen" id="screen-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+                <div class="app-top"><span class="app-title">Sell</span><span class="app-chip">Open shift</span></div>
+                <div class="cart-row"><span>Uji flour 1kg<small>x2</small></span><b>KES 240</b></div>
+                <div class="cart-row"><span>Cooking oil<small>x1</small></span><b>KES 210</b></div>
+                <div class="cart-row"><span>Sugar 1kg<small>x1</small></span><b>KES 110</b></div>
+                <div class="app-total"><span>Total</span><strong>KES 560.00</strong></div>
+                <div class="app-tenders"><span class="tender">Cash 200</span><span class="tender tender-active">M-Pesa 360</span></div>
+                <div class="app-charge">Charge</div>
+              </article>
+
+              <article class="screen" id="screen-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+                <div class="app-top"><span class="app-title">Payment</span><span class="app-chip chip-paid">Paid</span></div>
+                <div class="stk-card"><span class="stk-ring" aria-hidden="true">✓</span><b>Check your phone</b><small>Enter your M-Pesa PIN to approve KES 360</small></div>
+                <div class="receipt-line"><span>Receipt no.</span><b>MNJ-000042</b></div>
+                <div class="receipt-line"><span>M-Pesa code</span><b>SEH7JK9P2Q</b></div>
+                <div class="receipt-line"><span>eTIMS</span><b class="text-teal">Cleared ✓</b></div>
+                <div class="app-charge">View receipt</div>
+              </article>
+
+              <article class="screen" id="screen-4" role="tabpanel" aria-labelledby="tab-4" hidden>
+                <div class="app-top"><span class="app-title">Reports</span><span class="app-chip">Today</span></div>
+                <div class="report-hero"><small>Total sales</small><b>KES 24,860</b><span class="report-up">↑ 18% vs yesterday</span></div>
+                <div class="report-row"><span>Best seller</span><b>Uji flour</b></div>
+                <div class="report-row"><span>Payment mix</span><b>M-Pesa 71% · Cash 24% · Card 5%</b></div>
+                <div class="report-row"><span>Cash variance</span><b class="text-teal">KES 0.00</b></div>
+                <div class="app-charge">Close shift (Z)</div>
+              </article>
+
+            </div>
+            <div class="app-tabs" aria-hidden="true"><span>Sell</span><span>Orders</span><span>Stock</span><span>Reports</span></div>
+          </div>
+          <p class="stage-caption" id="stage-caption" aria-live="polite">Set up once — the till adapts to your trade.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap narrow" data-reveal>
+        <p class="eyebrow">Under the hood</p>
+        <h2>Small business, serious tooling</h2>
+        <p class="section-lede">Everything a growing business needs, without a stack of subscriptions or proprietary hardware.</p>
+      </div>
+      <div class="wrap bento">
+        <article class="bento-card bento-wide" data-reveal>
+          <div class="bento-body">
+            <span class="tag">Multi-branch</span>
+            <h3>One account. Every location.</h3>
+            <p>Each branch keeps its own stock, tills and shifts. Owners see per-branch and consolidated reports, with staff scoped to their location.</p>
+          </div>
+          <div class="branch-viz" aria-hidden="true">
+            <span class="branch-node">Main</span><span class="branch-node">Westlands</span><span class="branch-node">Mombasa</span>
+          </div>
+        </article>
+        <article class="bento-card" data-reveal>
+          <span class="tag">Staff</span>
+          <h3>Know who rang it up</h3>
+          <p>Hire staff in-app, assign roles and branches, and see the operator's name on every order, receipt and shift report.</p>
+        </article>
+        <article class="bento-card" data-reveal>
+          <span class="tag">Hardware</span>
+          <h3>A spare phone becomes a scanner</h3>
+          <p>Pair a second device over QR as a wireless barcode scanner. Print to an 80mm thermal printer or share a PDF receipt.</p>
+        </article>
+        <article class="bento-card" data-reveal>
+          <span class="tag">Payments</span>
+          <h3>Split tenders, one sale</h3>
+          <p>Part cash, part M-Pesa, part card — recorded together, with the payment mix showing up in your reports.</p>
+        </article>
+        <article class="bento-card bento-wide" data-reveal>
+          <div class="bento-body">
+            <span class="tag">Built for your trade</span>
+            <h3>The till rewords itself</h3>
+            <p>Choose your business type and Atomi switches on the right vocabulary and features — no second POS to buy.</p>
+          </div>
+          <div class="vertical-chips" aria-hidden="true">
+            <span>Retail</span><span>Restaurant</span><span>Pharmacy</span><span>Mechanic</span><span>Clothing</span><span>Laundry</span><span>Butchery</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-card" data-reveal>
+          <div class="contact-copy">
+            <p class="eyebrow">Enquiries &amp; pilots</p>
+            <h2>Let's put Atomi behind your counter.</h2>
+            <p>Tell us what you sell and where. We'll walk you through the till, help you choose the right setup, and arrange a pilot.</p>
+          </div>
+          <div class="contact-action">
+            <a class="btn btn-primary btn-lg" href="mailto:atomisolutionssupport@gmail.com?subject=Atomi%20pilot%20enquiry">
+              Email Atomi Solutions
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a class="contact-email" href="mailto:atomisolutionssupport@gmail.com">atomisolutionssupport@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top">
+        <img src="assets/logo.svg" alt="" class="brand-mark" width="28" height="28">
+        <span>atomi <b>solutions</b></span>
+      </a>
+      <p>Offline-first point of sale for the businesses that keep the lights on.</p>
+      <a href="mailto:atomisolutionssupport@gmail.com">atomisolutionssupport@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
