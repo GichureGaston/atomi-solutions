@@ -31,6 +31,7 @@
         <a href="#overview">Overview</a>
         <a href="#walkthrough">App walkthrough</a>
         <a href="#screens">Screens</a>
+        <a href="#receipts">Receipts</a>
         <a href="#features">Features</a>
         <a href="#trade">Built for your trade</a>
         <a href="#contact">Contact</a>
@@ -44,6 +45,7 @@
           <a href="#overview">Overview</a>
           <a href="#walkthrough">App walkthrough</a>
           <a href="#screens">Screens</a>
+          <a href="#receipts">Receipts</a>
           <a href="#features">Features</a>
           <a href="#trade">Built for your trade</a>
           <a href="#contact">Contact</a>
@@ -166,7 +168,7 @@
           <li role="presentation">
             <button class="step" role="tab" id="tab-3" aria-controls="screen-3" aria-selected="false" tabindex="-1" data-step="3">
               <span class="step-num">04</span>
-              <span><b>Confirm on the phone</b><small>M-Pesa STK, then a printable receipt</small></span>
+              <span><b>Confirm on the phone</b><small>M-Pesa STK push, waiting for the PIN</small></span>
             </button>
           </li>
           <li role="presentation">
@@ -189,8 +191,31 @@
               <article class="screen" id="screen-2" role="tabpanel" aria-labelledby="tab-2" hidden>
                 <img class="screen-shot" src="assets/screens/checkout-items.png" alt="Atomi till with items in the cart">
               </article>
-              <article class="screen" id="screen-3" role="tabpanel" aria-labelledby="tab-3" hidden>
-                <img class="screen-shot" src="assets/screens/payments-compliance.png" alt="Atomi payments and compliance screen">
+              <article class="screen screen-light" id="screen-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+                <div class="stk-screen">
+                  <div class="stk-top">
+                    <span>Sell</span>
+                    <span class="stk-status">Awaiting PIN</span>
+                  </div>
+                  <div class="stk-total">
+                    <small>Total due</small>
+                    <b>KES 560.00</b>
+                    <span>Receipt #USAFI-000042</span>
+                  </div>
+                  <div class="stk-prompt">
+                    <div class="stk-brand">
+                      <span class="stk-brand-mark" aria-hidden="true">M</span>
+                      <span><b>M-Pesa</b><small>from SAFARICOM</small></span>
+                    </div>
+                    <p>Check your phone and enter your PIN to approve this payment.</p>
+                    <dl class="stk-details">
+                      <div><dt>Amount</dt><dd>KES 360.00</dd></div>
+                      <div><dt>Pay to</dt><dd>Atomi Solutions</dd></div>
+                      <div><dt>Account</dt><dd>USAFI-000042</dd></div>
+                    </dl>
+                    <div class="stk-note"><span class="pulse"></span> Cart stays open until payment clears</div>
+                  </div>
+                </div>
               </article>
               <article class="screen" id="screen-4" role="tabpanel" aria-labelledby="tab-4" hidden>
                 <img class="screen-shot" src="assets/screens/reports.png" alt="Atomi sales reports screen">
@@ -312,6 +337,97 @@
         </figure>
       </div>
     </section>
+
+    <section class="section receipts" id="receipts">
+      <div class="wrap receipts-grid">
+        <div class="receipt-copy" data-reveal>
+          <p class="eyebrow">Digital receipts</p>
+          <h2>Clear, branded receipts. No paper roll required.</h2>
+          <p class="section-lede">Every completed sale gets a receipt your customer can actually read — with the payment split, M-Pesa reference and eTIMS clearance in one place.</p>
+          <ul class="receipt-points">
+            <li>Itemised with totals and tax</li>
+            <li>Cash, M-Pesa and card shown separately</li>
+            <li>eTIMS clearance number and QR code</li>
+            <li>Print to 80mm or share as a PDF</li>
+          </ul>
+          <button class="btn btn-primary btn-lg" id="receipt-open" type="button">
+            View sample receipt
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <div class="receipt-preview" data-reveal>
+          <div class="receipt-paper receipt-paper-mini" aria-hidden="true">
+            <div class="rp-brand">
+              <span class="rp-mark">a</span>
+              <span><b>atomi solutions</b><small>USAFI CLEANING SERVICES</small></span>
+            </div>
+            <div class="rp-title"><b>Receipt</b><span>#USAFI-000042</span></div>
+            <div class="rp-meta">19 Nov 2026 · 12:41 PM<br>Main branch · Gaston</div>
+            <div class="rp-lines">
+              <span>Uji flour 1kg <i>x2</i></span><b>240.00</b>
+              <span>Cooking oil <i>x1</i></span><b>210.00</b>
+              <span>Sugar 1kg <i>x1</i></span><b>110.00</b>
+            </div>
+            <div class="rp-total"><span>Total</span><b>KES 560.00</b></div>
+            <div class="rp-paid">M-Pesa 360.00 · Cash 200.00</div>
+            <div class="rp-qr" aria-hidden="true"></div>
+            <div class="rp-foot">Thank you for shopping with us</div>
+          </div>
+          <span class="receipt-preview-note">Sample receipt · tap “View sample receipt” to open it</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="receipt-modal" id="receipt-modal" hidden>
+      <div class="receipt-backdrop" id="receipt-backdrop"></div>
+      <div class="receipt-dialog" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+        <div class="receipt-dialog-head">
+          <div>
+            <p class="eyebrow">Digital receipt</p>
+            <h3 id="receipt-modal-title">Receipt #USAFI-000042</h3>
+          </div>
+          <button class="receipt-close" id="receipt-close" type="button" aria-label="Close receipt">×</button>
+        </div>
+        <div class="receipt-dialog-body">
+          <div class="receipt-paper receipt-paper-full">
+            <div class="rp-brand">
+              <span class="rp-mark">a</span>
+              <span><b>atomi solutions</b><small>USAFI CLEANING SERVICES</small></span>
+            </div>
+            <div class="rp-title"><b>Receipt</b><span>#USAFI-000042</span></div>
+            <div class="rp-meta">19 Nov 2026 · 12:41 PM<br>Main branch · Cashier: Gaston</div>
+            <table class="rp-table">
+              <thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead>
+              <tbody>
+                <tr><td>Uji flour 1kg</td><td>2</td><td>240.00</td></tr>
+                <tr><td>Cooking oil</td><td>1</td><td>210.00</td></tr>
+                <tr><td>Sugar 1kg</td><td>1</td><td>110.00</td></tr>
+              </tbody>
+            </table>
+            <div class="rp-totals">
+              <div><span>Subtotal</span><b>560.00</b></div>
+              <div><span>Tax (included)</span><b>0.00</b></div>
+              <div class="rp-grand"><span>Total</span><b>KES 560.00</b></div>
+            </div>
+            <div class="rp-payments">
+              <div><b>Payments</b></div>
+              <div><span>M-Pesa · SEH7JK9P2Q</span><b>360.00</b></div>
+              <div><span>Cash</span><b>200.00</b></div>
+            </div>
+            <div class="rp-compliance">
+              <div class="rp-qr" aria-hidden="true"></div>
+              <div><b>eTIMS cleared</b><small>Clearance number: KRA-24/118842<br>QR verified on receipt</small></div>
+            </div>
+            <div class="rp-foot">Thank you for shopping with us</div>
+          </div>
+        </div>
+        <div class="receipt-actions">
+          <button class="btn btn-ghost" id="receipt-close-2" type="button">Close</button>
+          <button class="btn btn-primary" type="button" onclick="window.print()">Print / save as PDF</button>
+        </div>
+      </div>
+    </div>
 
     <section class="section contact" id="contact">
       <div class="wrap">

@@ -209,7 +209,7 @@
       "Set up once — the till adapts to your trade.",
       "Add products with prices, SKUs and barcodes.",
       "Tap or scan items, then split the tender between methods.",
-      "Payments and compliance — M-Pesa, eTIMS and tax settings in one place.",
+      "M-Pesa STK push — the customer approves on their phone while the cart stays open.",
       "Close the shift and see every branch in one report."
     ];
 
@@ -242,6 +242,41 @@
           tabs[next].focus();
         }
       });
+    });
+  })();
+
+  /* ------------------------------------------------------------------------
+     Digital receipt viewer
+     ------------------------------------------------------------------------ */
+  (function receiptViewer() {
+    var modal = document.getElementById("receipt-modal");
+    var open = document.getElementById("receipt-open");
+    var close = document.getElementById("receipt-close");
+    var close2 = document.getElementById("receipt-close-2");
+    var backdrop = document.getElementById("receipt-backdrop");
+    if (!modal || !open) return;
+
+    var lastFocused = null;
+
+    function show() {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      if (close) close.focus();
+    }
+
+    function hide() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    open.addEventListener("click", show);
+    if (close) close.addEventListener("click", hide);
+    if (close2) close2.addEventListener("click", hide);
+    if (backdrop) backdrop.addEventListener("click", hide);
+    document.addEventListener("keydown", function (e) {
+      if (!modal.hidden && e.key === "Escape") hide();
     });
   })();
 
