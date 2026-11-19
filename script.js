@@ -209,7 +209,7 @@
       "Set up once — the till adapts to your trade.",
       "Add products with prices, SKUs and barcodes.",
       "Tap or scan items, then split the tender between methods.",
-      "M-Pesa confirms the payment; the receipt clears with eTIMS.",
+      "Payments and compliance — M-Pesa, eTIMS and tax settings in one place.",
       "Close the shift and see every branch in one report."
     ];
 
