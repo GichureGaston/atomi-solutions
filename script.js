@@ -23,7 +23,7 @@
     var ctx = canvas.getContext("2d");
     var w = 0, h = 0, dpr = 1;
     var shapes = ["circle", "triangle", "square"];
-    var colors = ["#0d9c92", "#2b82b8", "#2e9a6b", "#6a8fa3"];
+    var colors = ["#2dd4bf", "#38bdf8", "#34d399", "#f59e3c", "#7dd3fc"];
     var particles = [];
     var mouse = { x: -1000, y: -1000, active: false };
 
