@@ -1,6 +1,7 @@
 /* ==========================================================================
-   Atomi Solutions — site interactions
+   Atomi Solutions: site interactions
    - Ambient "anti-gravity" particle field (canvas, cursor repulsion)
+   - Scroll progress, sticky header state, active nav highlighting
    - Scroll reveal
    - Interactive walkthrough tabs
    ========================================================================== */
@@ -12,7 +13,7 @@
 
   /* ------------------------------------------------------------------------
      Ambient particle field
-     Shapes drift upward, sway gently, and are pushed away from the cursor —
+     Shapes drift upward, sway gently, and are pushed away from the cursor,
      the same floating-field feel as the Antigravity site, in brand colours.
      ------------------------------------------------------------------------ */
   (function particleField() {
@@ -28,7 +29,7 @@
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
+      w = document.documentElement.clientWidth || window.innerWidth;
       h = window.innerHeight;
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
@@ -197,6 +198,74 @@
   })();
 
   /* ------------------------------------------------------------------------
+     Scroll chrome: progress bar, sticky header, active nav link
+     ------------------------------------------------------------------------ */
+  (function scrollChrome() {
+    var header = document.querySelector(".site-header");
+    var bar = document.getElementById("scroll-progress");
+    var links = Array.prototype.slice.call(
+      document.querySelectorAll(".nav-links a[href^='#']")
+    );
+    if (!header && !bar && !links.length) return;
+
+    var sections = links.map(function (link) {
+      var id = link.getAttribute("href").slice(1);
+      return { link: link, id: id, el: document.getElementById(id) };
+    }).filter(function (item) { return !!item.el; });
+
+    var ticking = false;
+
+    function update() {
+      var doc = document.documentElement;
+      var y = window.pageYOffset || doc.scrollTop || 0;
+      var max = Math.max(1, doc.scrollHeight - window.innerHeight);
+
+      if (bar) {
+        var pct = Math.min(100, Math.max(0, (y / max) * 100));
+        bar.style.width = pct.toFixed(2) + "%";
+      }
+      if (header) header.classList.toggle("is-scrolled", y > 8);
+
+      if (sections.length) {
+        sections.forEach(function (item) {
+          item.top = item.el.getBoundingClientRect().top + y;
+        });
+        sections.sort(function (a, b) { return a.top - b.top; });
+
+        var headerHeight = header ? header.offsetHeight : 0;
+        var marker = y + headerHeight + Math.min(160, window.innerHeight * 0.25);
+        var current = "";
+        sections.forEach(function (item) {
+          if (item.top <= marker) current = item.id;
+        });
+        if (y + window.innerHeight >= doc.scrollHeight - 2) {
+          current = sections[sections.length - 1].id;
+        }
+
+        links.forEach(function (link) {
+          var active = link.getAttribute("href") === "#" + current;
+          link.classList.toggle("is-current", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      }
+
+      ticking = false;
+    }
+
+    function schedule() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("load", schedule);
+    update();
+  })();
+
+  /* ------------------------------------------------------------------------
      Walkthrough tabs
      ------------------------------------------------------------------------ */
   (function walkthrough() {
@@ -206,11 +275,11 @@
     var screens = Array.prototype.slice.call(document.querySelectorAll(".screen"));
     var caption = document.getElementById("stage-caption");
     var captions = [
-      "Set up once — the till adapts to your trade.",
+      "Set up once. The till adapts to your trade.",
       "Add products with prices, SKUs and barcodes.",
       "Tap or scan items, then split the tender between methods.",
-      "M-Pesa STK push — the customer approves on their phone while the cart stays open.",
-      "Close the shift and see every branch in one report."
+      "Native STK push. The sale stays pending until Safaricom confirms the exact amount.",
+      "Close the shift, count the cash, and see every branch in one report."
     ];
 
     function activate(index) {

@@ -30,10 +30,10 @@
       <div class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#walkthrough">App walkthrough</a>
-        <a href="#screens">Screens</a>
-        <a href="#receipts">Receipts</a>
         <a href="#features">Features</a>
         <a href="#trade">Built for your trade</a>
+        <a href="#screens">Screens</a>
+        <a href="#receipts">Receipts</a>
         <a href="#contact">Contact</a>
       </div>
 
@@ -44,10 +44,10 @@
         <div class="mobile-menu-panel">
           <a href="#overview">Overview</a>
           <a href="#walkthrough">App walkthrough</a>
-          <a href="#screens">Screens</a>
-          <a href="#receipts">Receipts</a>
           <a href="#features">Features</a>
           <a href="#trade">Built for your trade</a>
+          <a href="#screens">Screens</a>
+          <a href="#receipts">Receipts</a>
           <a href="#contact">Contact</a>
         </div>
       </details>
@@ -58,12 +58,12 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-copy" data-reveal>
-          <p class="eyebrow"><span class="eyebrow-dot"></span> Offline-first POS · built in Kenya</p>
+          <p class="eyebrow"><span class="eyebrow-dot"></span> The till that never stops selling · built in Kenya</p>
           <h1>Sell anywhere.<br><span class="gradient">Even offline.</span></h1>
           <p class="lede">
             Atomi turns the phone you already own into a complete till. Take cash,
             M-Pesa and card payments, file KRA eTIMS receipts, and keep trading when
-            the internet drops — all from one place.
+            the internet drops, all from one place.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#walkthrough">
@@ -77,6 +77,7 @@
             <li>Real M-Pesa STK push</li>
             <li>eTIMS built in</li>
           </ul>
+          <p class="hero-note">No new hardware, no installer, no server room. Just the phone already in your pocket.</p>
         </div>
 
         <div class="hero-device" data-reveal>
@@ -112,6 +113,15 @@
           one kind of shop. Atomi starts from the reality of a Kenyan SME: M-Pesa is
           the default, the network is unreliable, and KRA eTIMS is part of every sale.
         </p>
+        <p class="section-lede section-lede-sub">
+          The average business still runs on a notebook, a calculator and trust. Cash,
+          M-Pesa and card are reconciled by hand, and leaks only surface at stocktake.
+        </p>
+      </div>
+      <div class="wrap context-strip" data-reveal aria-label="Why now">
+        <div><strong>7.4M</strong><span>Kenyan SMEs</span></div>
+        <div><strong>1.8M+</strong><span>M-Pesa merchant points</span></div>
+        <div><strong>2026</strong><span>KRA validates returns against eTIMS</span></div>
       </div>
       <div class="wrap feature-row">
         <article class="feature-card" data-reveal>
@@ -119,21 +129,21 @@
             <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2M17 3l4 4-4 4"/></svg>
           </span>
           <h3>Keeps selling offline</h3>
-          <p>Sales are saved locally first, then synced in the background. Idempotent retries mean a sale is never applied twice.</p>
+          <p>Power cut, dead zone or crowded market. The till keeps selling. Every sale lands in a local outbox first, then syncs once with idempotent retries.</p>
         </article>
         <article class="feature-card" data-reveal>
           <span class="feature-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
           </span>
           <h3>M-Pesa, properly</h3>
-          <p>A real STK push — the sale finalises only when Safaricom confirms the exact amount. Missed callbacks are reconciled automatically.</p>
+          <p>A real STK push, not a “mark as paid” button. The sale stays pending until Safaricom confirms the exact amount; missed callbacks are reconciled automatically.</p>
         </article>
         <article class="feature-card" data-reveal>
           <span class="feature-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><circle cx="17" cy="16" r="2"/></svg>
           </span>
           <h3>eTIMS on every sale</h3>
-          <p>Invoices and credit notes clear with KRA. The receipt carries the clearance number and QR code — no bolt-on device.</p>
+          <p>Compliance is a checkout step, not another device. Every sale and credit note clears with KRA, and the receipt carries the clearance number and QR code.</p>
         </article>
       </div>
     </section>
@@ -213,7 +223,7 @@
                       <div><dt>Pay to</dt><dd>Atomi Solutions</dd></div>
                       <div><dt>Account</dt><dd>USAFI-000042</dd></div>
                     </dl>
-                    <div class="stk-note"><span class="pulse"></span> Cart stays open until payment clears</div>
+                    <div class="stk-note"><span class="pulse"></span> Sale pending until Safaricom confirms</div>
                   </div>
                 </div>
               </article>
@@ -222,7 +232,7 @@
               </article>
             </div>
           </div>
-          <p class="stage-caption" id="stage-caption" aria-live="polite">Set up once — the till adapts to your trade.</p>
+          <p class="stage-caption" id="stage-caption" aria-live="polite">Set up once. The till adapts to your trade.</p>
         </div>
       </div>
     </section>
@@ -231,7 +241,7 @@
       <div class="wrap narrow" data-reveal>
         <p class="eyebrow">Under the hood</p>
         <h2>Small business, serious tooling</h2>
-        <p class="section-lede">Everything a growing business needs, without a stack of subscriptions or proprietary hardware.</p>
+        <p class="section-lede">One app. Any phone. Any trade. Any branch, online or not. Everything a growing business needs, without proprietary hardware or a stack of subscriptions.</p>
       </div>
       <div class="wrap bento">
         <article class="bento-card bento-full" data-reveal>
@@ -257,7 +267,7 @@
         <article class="bento-card" data-reveal>
           <span class="tag">Payments</span>
           <h3>Split tenders, one sale</h3>
-          <p>Part cash, part M-Pesa, part card — recorded together, with the payment mix showing up in your reports.</p>
+          <p>Part cash, part M-Pesa, part card, recorded together, with the payment mix showing up in your reports.</p>
         </article>
       </div>
     </section>
@@ -367,7 +377,7 @@
       <div class="wrap narrow" data-reveal>
         <p class="eyebrow">More from the app</p>
         <h2>Every part of the day, covered</h2>
-        <p class="section-lede">Real screens from Atomi — theming, onboarding, opening a shift and adding stock.</p>
+        <p class="section-lede">Real screens from Atomi: theming, onboarding, opening a shift and adding stock.</p>
       </div>
       <div class="wrap gallery-grid">
         <figure class="shot" data-reveal>
@@ -394,11 +404,12 @@
         <div class="receipt-copy" data-reveal>
           <p class="eyebrow">Digital receipts</p>
           <h2>Clear, branded receipts. No paper roll required.</h2>
-          <p class="section-lede">Every completed sale gets a receipt your customer can actually read — with the payment split, M-Pesa reference and eTIMS clearance in one place.</p>
+          <p class="section-lede">Compliance is a checkout step, not a separate device. Every completed sale gets a receipt your customer can actually read, with the payment split, M-Pesa reference and eTIMS clearance in one place. Voids and refunds issue matching credit notes.</p>
           <ul class="receipt-points">
             <li>Itemised with totals and tax</li>
             <li>Cash, M-Pesa and card shown separately</li>
             <li>eTIMS clearance number and QR code</li>
+            <li>Matching credit notes for voids and refunds</li>
             <li>Print to 80mm or share as a PDF</li>
           </ul>
           <button class="btn btn-primary btn-lg" id="receipt-open" type="button">
@@ -414,6 +425,7 @@
               <span><b>atomi solutions</b><small>USAFI CLEANING SERVICES</small></span>
             </div>
             <div class="rp-title"><b>Receipt</b><span>#USAFI-000042</span></div>
+            <span class="rp-stamp" aria-hidden="true">PAID</span>
             <div class="rp-meta">19 Nov 2026 · 12:41 PM<br>Main branch · Gaston</div>
             <div class="rp-lines">
               <span>Uji flour 1kg <i>x2</i></span><b>240.00</b>
@@ -447,6 +459,7 @@
               <span><b>atomi solutions</b><small>USAFI CLEANING SERVICES</small></span>
             </div>
             <div class="rp-title"><b>Receipt</b><span>#USAFI-000042</span></div>
+            <span class="rp-stamp" aria-hidden="true">PAID</span>
             <div class="rp-meta">19 Nov 2026 · 12:41 PM<br>Main branch · Cashier: Gaston</div>
             <table class="rp-table">
               <thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead>
@@ -483,13 +496,14 @@
     <section class="section contact" id="contact">
       <div class="wrap">
         <div class="contact-card" data-reveal>
+          <div class="contact-glow" aria-hidden="true"></div>
           <div class="contact-copy">
             <p class="eyebrow">Enquiries &amp; pilots</p>
-            <h2>Let's put Atomi behind your counter.</h2>
-            <p>Tell us what you sell and where. We'll walk you through the till, help you choose the right setup, and arrange a pilot.</p>
+            <h2>Let's put 10 tills on the counter.</h2>
+            <p>We're opening a 90-day pilot with businesses across three trades. Tell us what you sell and where. We'll help you choose the right setup and measure every sale from day one.</p>
           </div>
           <div class="contact-action">
-            <a class="btn btn-primary btn-lg" href="mailto:atomisolutionssupport@gmail.com?subject=Atomi%20pilot%20enquiry">
+            <a class="btn btn-amber btn-lg" href="mailto:atomisolutionssupport@gmail.com?subject=Atomi%20pilot%20enquiry">
               Email Atomi Solutions
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
             </a>
@@ -502,15 +516,27 @@
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <a class="brand" href="#top">
-        <img src="assets/logo.svg" alt="" class="brand-mark" width="28" height="28">
-        <span>atomi <b>solutions</b></span>
-      </a>
-      <p>Offline-first point of sale for the businesses that keep the lights on.</p>
-      <a href="mailto:atomisolutionssupport@gmail.com">atomisolutionssupport@gmail.com</a>
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="assets/logo.svg" alt="" class="brand-mark" width="28" height="28">
+          <span>atomi <b>solutions</b></span>
+        </a>
+        <p>Every sale counted. Every till open. Every branch visible.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#features">Features</a>
+        <a href="#trade">Trades</a>
+        <a href="#receipts">Receipts</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="footer-email" href="mailto:atomisolutionssupport@gmail.com">atomisolutionssupport@gmail.com</a>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© 2026 Atomi Solutions</span>
+      <span>Built in Kenya · Mombasa</span>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=orbit-10" defer></script>
 </body>
 </html>
