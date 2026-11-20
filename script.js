@@ -290,4 +290,37 @@
       link.addEventListener("click", function () { menu.open = false; });
     });
   })();
+
+  /* ------------------------------------------------------------------------
+     Trade orbit: reflect the focused trade in the nucleus
+     ------------------------------------------------------------------------ */
+  (function tradeOrbit() {
+    var title = document.querySelector(".nucleus-title");
+    var detail = document.querySelector(".nucleus-detail");
+    var nodes = Array.prototype.slice.call(document.querySelectorAll(".electron"));
+    if (!title || !detail || !nodes.length) return;
+
+    var defaultTitle = title.textContent;
+    var defaultDetail = detail.textContent;
+
+    nodes.forEach(function (node) {
+      var name = node.querySelector("b");
+      var description = node.querySelector("small");
+
+      function activate() {
+        title.textContent = name ? name.textContent.trim() : defaultTitle;
+        detail.textContent = description ? description.textContent.trim() : defaultDetail;
+      }
+
+      function reset() {
+        title.textContent = defaultTitle;
+        detail.textContent = defaultDetail;
+      }
+
+      node.addEventListener("mouseenter", activate);
+      node.addEventListener("mouseleave", reset);
+      node.addEventListener("focusin", activate);
+      node.addEventListener("focusout", reset);
+    });
+  })();
 })();
