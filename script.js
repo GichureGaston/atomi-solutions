@@ -1,6 +1,6 @@
 /* ==========================================================================
    Atomi Solutions: site interactions
-   - Ambient "anti-gravity" particle field (canvas, cursor repulsion)
+   - Particle field (canvas, cursor gravity and click resonance)
    - Scroll progress, sticky header state, active nav highlighting
    - Scroll reveal
    - Interactive walkthrough tabs
@@ -12,9 +12,9 @@
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ------------------------------------------------------------------------
-     Ambient particle field
-     Shapes drift upward, sway gently, and are pushed away from the cursor,
-     the same floating-field feel as the Antigravity site, in brand colours.
+     Particle field
+     Shapes gather in one spot, gravitate toward the cursor, and resonate
+     with clicks. No glows, no gradients, just solid brand-coloured shapes.
      ------------------------------------------------------------------------ */
   (function particleField() {
     var canvas = document.getElementById("particle-field");
@@ -25,7 +25,19 @@
     var shapes = ["circle", "triangle", "square"];
     var colors = ["#2dd4bf", "#38bdf8", "#34d399", "#f59e3c", "#7dd3fc"];
     var particles = [];
-    var mouse = { x: -1000, y: -1000, active: false };
+    var pulses = [];
+    var anchor = { x: 0, y: 0 };
+    var target = { x: 0, y: 0 };
+    var pointerActive = false;
+
+    function setAnchor() {
+      anchor.x = w * (w < 700 ? 0.5 : 0.72);
+      anchor.y = h * (w < 700 ? 0.28 : 0.34);
+      if (!pointerActive) {
+        target.x = anchor.x;
+        target.y = anchor.y;
+      }
+    }
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -36,6 +48,7 @@
       canvas.style.width = w + "px";
       canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      setAnchor();
       seed();
     }
 
@@ -46,61 +59,75 @@
     }
 
     function reset(p, initial) {
-      p.x = Math.random() * w;
-      p.y = initial ? Math.random() * h : h + 40 + Math.random() * 80;
-      p.size = 6 + Math.random() * 15;
+      var spread = Math.max(18, Math.min(w, h) * 0.14);
+      var angle = Math.random() * Math.PI * 2;
+      var radius = Math.sqrt(Math.random()) * spread;
+      p.x = target.x + Math.cos(angle) * radius;
+      p.y = target.y + Math.sin(angle) * radius;
+      p.vx = 0;
+      p.vy = 0;
+      p.size = 5 + Math.random() * 11;
       p.shape = shapes[(Math.random() * shapes.length) | 0];
       p.color = colors[(Math.random() * colors.length) | 0];
-      p.alpha = 0.08 + Math.random() * 0.16;
-      p.speed = 0.14 + Math.random() * 0.42;
-      p.sway = 0.25 + Math.random() * 0.8;
-      p.phase = Math.random() * Math.PI * 2;
-      p.swaySpeed = 0.005 + Math.random() * 0.012;
+      p.alpha = 0.12 + Math.random() * 0.18;
+      p.orbit = 8 + Math.random() * 42;
+      p.orbitAngle = Math.random() * Math.PI * 2;
+      p.orbitSpeed =
+        (0.004 + Math.random() * 0.01) * (Math.random() < 0.5 ? -1 : 1);
+      p.gravity = 0.008 + Math.random() * 0.012;
       p.rot = Math.random() * Math.PI * 2;
-      p.rotSpeed = (Math.random() - 0.5) * 0.012;
-      p.dx = 0;
-      p.dy = 0;
+      p.rotSpeed = (Math.random() - 0.5) * 0.02;
+      p.resonance = 0;
     }
 
     function seed() {
-      var count = Math.max(26, Math.min(90, Math.round((w * h) / 17000)));
+      var count = Math.max(24, Math.min(72, Math.round((w * h) / 22000)));
       particles = [];
+      pulses = [];
       for (var i = 0; i < count; i++) particles.push(makeParticle(true));
     }
 
-    function update(p) {
-      p.phase += p.swaySpeed;
-      p.y -= p.speed;
-      p.x += Math.sin(p.phase) * p.sway;
-      p.rot += p.rotSpeed;
+    function addPulse(x, y) {
+      pulses.push({ x: x, y: y, age: 0 });
+      if (pulses.length > 5) pulses.shift();
+    }
 
-      if (mouse.active) {
-        var px = p.x + p.dx;
-        var py = p.y + p.dy;
-        var ax = px - mouse.x;
-        var ay = py - mouse.y;
-        var dist = Math.sqrt(ax * ax + ay * ay);
-        var radius = 150;
-        if (dist < radius && dist > 0.001) {
-          var force = (1 - dist / radius) * 2.6;
-          p.dx += (ax / dist) * force;
-          p.dy += (ay / dist) * force;
+    function update(p) {
+      p.orbitAngle += p.orbitSpeed;
+      var desiredX = target.x + Math.cos(p.orbitAngle) * p.orbit;
+      var desiredY = target.y + Math.sin(p.orbitAngle) * p.orbit;
+      p.vx += (desiredX - p.x) * p.gravity;
+      p.vy += (desiredY - p.y) * p.gravity;
+
+      for (var i = 0; i < pulses.length; i++) {
+        var pulse = pulses[i];
+        var wave = pulse.age * 15;
+        var dx = p.x - pulse.x;
+        var dy = p.y - pulse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var gap = Math.abs(dist - wave);
+        if (gap < 26 && dist > 0.001) {
+          var strength = (1 - gap / 26) * 1.6;
+          p.vx += (dx / dist) * strength;
+          p.vy += (dy / dist) * strength;
+          if (strength > p.resonance) p.resonance = strength;
         }
       }
 
-      // Ease displacement back to zero so particles rejoin the upward drift.
-      p.dx *= 0.93;
-      p.dy *= 0.93;
-
-      if (p.y < -50 || p.x < -70 || p.x > w + 70) reset(p, false);
+      p.vx *= 0.9;
+      p.vy *= 0.9;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotSpeed;
+      p.resonance *= 0.94;
     }
 
     function draw(p) {
-      var s = p.size;
+      var s = p.size * (1 + p.resonance * 0.65);
       ctx.save();
-      ctx.translate(p.x + p.dx, p.y + p.dy);
+      ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
-      ctx.globalAlpha = p.alpha;
+      ctx.globalAlpha = Math.min(0.7, p.alpha + p.resonance * 0.28);
       ctx.fillStyle = p.color;
       ctx.beginPath();
       if (p.shape === "circle") {
@@ -117,12 +144,33 @@
       ctx.restore();
     }
 
+    function drawPulses() {
+      for (var i = 0; i < pulses.length; i++) {
+        var pulse = pulses[i];
+        var alpha = 0.2 - pulse.age * 0.0035;
+        if (alpha <= 0) continue;
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = "#2dd4bf";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(pulse.x, pulse.y, pulse.age * 15, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
     function frame() {
       ctx.clearRect(0, 0, w, h);
-      for (var i = 0; i < particles.length; i++) {
-        update(particles[i]);
-        draw(particles[i]);
+      for (var i = pulses.length - 1; i >= 0; i--) {
+        pulses[i].age += 1;
+        if (pulses[i].age > 58) pulses.splice(i, 1);
       }
+      for (var j = 0; j < particles.length; j++) {
+        update(particles[j]);
+        draw(particles[j]);
+      }
+      drawPulses();
       window.requestAnimationFrame(frame);
     }
 
@@ -131,25 +179,36 @@
       for (var i = 0; i < particles.length; i++) draw(particles[i]);
     }
 
+    function moveTarget(x, y) {
+      target.x = x;
+      target.y = y;
+      pointerActive = true;
+    }
+
+    function releaseTarget() {
+      pointerActive = false;
+      target.x = anchor.x;
+      target.y = anchor.y;
+    }
+
     window.addEventListener("resize", function () {
       resize();
       if (reduceMotion) renderOnce();
     });
 
     window.addEventListener("mousemove", function (e) {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
+      moveTarget(e.clientX, e.clientY);
     });
-    document.addEventListener("mouseleave", function () { mouse.active = false; });
+    document.addEventListener("mouseleave", releaseTarget);
     window.addEventListener("touchmove", function (e) {
       if (e.touches && e.touches[0]) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-        mouse.active = true;
+        moveTarget(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
-    window.addEventListener("touchend", function () { mouse.active = false; });
+    window.addEventListener("touchend", releaseTarget);
+    window.addEventListener("click", function (e) {
+      if (!reduceMotion) addPulse(e.clientX, e.clientY);
+    });
 
     resize();
     if (reduceMotion) renderOnce();
